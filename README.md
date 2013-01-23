@@ -53,6 +53,21 @@ UIColor *myGrayColor = MP_GRAY(128);
 UIColor *myGrayTransparentColor = MP_GRAYA(128, 0.2);
 ```
 
+### Hex values support
+
+Like in CSS script files, you can create color starting from string hex values. Values can be defined in these formats:
+  1. RGB
+  2. RGBA
+  3. RRGGBB
+  4. RRGGBBAA
+  
+I.e you can create color like this:
+
+```objc
+UIColor *myHexColor = MP_HEX_RGB(@"FCE");   // Will be the equivalent of using @"FFCCEEFF"
+UIColor *myHexFullColor = MP_HEX_RGB(@"AAB678CC");
+```
+
 ### Hue/Saturation/Lightness (HSL) support
 
 Since the lack of HSL values support in the iOS SDK, a couple of handy functions have been added:
