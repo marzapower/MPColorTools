@@ -27,7 +27,7 @@
 #define MP_HSBA(h,s,b,a)            (MP_HSVA(h,s,b,a))
 #define MP_GRAY(g)                  ([UIColor colorWithWhite:MP_255_SCALE(g) alpha:1])
 #define MP_GRAYA(g,a)               ([UIColor colorWithWhite:MP_255_SCALE(g) alpha:MP_RANGE_0_1(a)])
-
+#define MP_RGB_HEX(h)               ([UIColor colorWithRGB:h])
 
 @interface UIColor (MPColorTools)
 
@@ -47,6 +47,9 @@
 - (UIColor *) colorWithLightness:(CGFloat)lightness;
 // Darkens a color by a percentage
 - (UIColor *) colorWithLightness:(CGFloat)lightness alpha:(CGFloat)alpha;
+
+// color with hex
++ (UIColor*)colorWithRGB:(NSUInteger)rgb;
 
 @end
 
