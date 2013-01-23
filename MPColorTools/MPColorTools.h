@@ -40,13 +40,13 @@
 // Lightens a color by a percentage
 - (UIColor *) colorLightenedBy:(CGFloat)percent;
 // Adds or remove a given amount of lightness to a color
-- (UIColor *) colorByAddingLighteness:(CGFloat)quantity;
+- (UIColor *) colorByAddingLightness:(CGFloat)quantity;
 // Darkens a color by a percentage
 - (UIColor *) colorDarkenedBy:(CGFloat)percent;
 // Darkens a color by a percentage
-- (UIColor *) colorWithLighness:(CGFloat)lightness;
+- (UIColor *) colorWithLightness:(CGFloat)lightness;
 // Darkens a color by a percentage
-- (UIColor *) colorWithLighness:(CGFloat)lightness alpha:(CGFloat)alpha;
+- (UIColor *) colorWithLightness:(CGFloat)lightness alpha:(CGFloat)alpha;
 
 @end
 

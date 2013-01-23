@@ -146,7 +146,7 @@ static void RGB2HSL(float r, float g, float b, float* outH, float* outS, float* 
     return [UIColor colorWithRed:r green:g blue:b alpha:alpha];
 }
 
-- (UIColor *) colorByAddingLighteness:(CGFloat)quantity {
+- (UIColor *) colorByAddingLightness:(CGFloat)quantity {
     CGFloat hue = 0;
     CGFloat sat = 0;
     CGFloat lum = 0;
@@ -182,17 +182,17 @@ static void RGB2HSL(float r, float g, float b, float* outH, float* outS, float* 
     return [UIColor colorWithHue:hue saturation:sat lightness:lum alpha:alp];
 }
 
-- (UIColor *)colorWithLighness:(CGFloat)lightness {
+- (UIColor *)colorWithLightness:(CGFloat)lightness {
     CGFloat hue = 0;
     CGFloat sat = 0;
     CGFloat lum = 0;
     CGFloat alp = 0;
     
     [self getHue:&hue saturation:&sat lightness:&lum alpha:&alp];
-    return [self colorWithLighness:lightness alpha:alp];
+    return [self colorWithLightness:lightness alpha:alp];
 }
 
-- (UIColor *)colorWithLighness:(CGFloat)lightness alpha:(CGFloat)alpha {
+- (UIColor *)colorWithLightness:(CGFloat)lightness alpha:(CGFloat)alpha {
     CGFloat hue = 0;
     CGFloat sat = 0;
     CGFloat lum = 0;
