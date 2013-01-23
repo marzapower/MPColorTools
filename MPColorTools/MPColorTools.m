@@ -202,4 +202,10 @@ static void RGB2HSL(float r, float g, float b, float* outH, float* outS, float* 
     return [UIColor colorWithHue:hue saturation:sat lightness:lightness alpha:alpha];
 }
 
+
++ (UIColor*)colorWithRGB:(NSUInteger)rgb;
+{
+    return [UIColor colorWithRed:((rgb & 0xff0000) >> 16)/255.0 green:((rgb & 0x00ff00) >> 8)/255.0 blue:(rgb & 0x0000ff)/255.0 alpha:1.0];
+}
+
 @end
