@@ -19,7 +19,7 @@
 
 #define MP_RGB(r,g,b)               ([UIColor colorWithRed:MP_255_SCALE(r) green:MP_255_SCALE(g) blue:MP_255_SCALE(b) alpha:1])
 #define MP_RGBA(r,g,b,a)            ([UIColor colorWithRed:MP_255_SCALE(r) green:MP_255_SCALE(g) blue:MP_255_SCALE(b) alpha:MP_RANGE_0_1(a)])
-#define MP_HSL(h,s,l)               ([UIColor colorWithHue:MP_255_SCALE(h) saturation:MP_255_SCALE(s) lightness:MP_RANGE_0_1(l) alpha:1])
+#define MP_HSL(h,s,l)               ([UIColor colorWithHue:MP_RANGE_0_1(h) saturation:MP_RANGE_0_1(s) lightness:MP_RANGE_0_1(l) alpha:1])
 #define MP_HSLA(h,s,l,a)            ([UIColor colorWithHue:MP_RANGE_0_1(h) saturation:MP_RANGE_0_1(s) lightness:MP_RANGE_0_1(l) alpha:MP_RANGE_0_1(a)])
 #define MP_HSV(h,s,v)               ([UIColor colorWithHue:MP_RANGE_0_1(h) saturation:MP_RANGE_0_1(s) brightness:MP_RANGE_0_1(v) alpha:1])
 #define MP_HSVA(h,s,v,a)            ([UIColor colorWithHue:MP_RANGE_0_1(h) saturation:MP_RANGE_0_1(s) brightness:MP_RANGE_0_1(v) alpha:MP_RANGE_0_1(a)])
