@@ -34,7 +34,7 @@ Usage
 
 ### Short-hand macros
 
-You will be able to create colors using RBG values in the (0,255) range:
+You will be able to create colors using RGB values in the (0,255) range:
 
 ```objc
 UIColor *myColor = MP_RGB(100, 120, 200);
