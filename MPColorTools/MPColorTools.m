@@ -58,7 +58,7 @@ UIColor *MP_HEX_RGB(NSString *hexString) {
     return MP_RGBA(red, green, blue, alpha);
 }
 
-static void HSL2RGB(float h, float s, float l, float* outR, float* outG, float* outB) {
+static void MP_HSL2RGB(float h, float s, float l, float* outR, float* outG, float* outB) {
 	float temp1, temp2, temp[3];
 	int i;
 	
@@ -118,7 +118,7 @@ static void HSL2RGB(float h, float s, float l, float* outR, float* outG, float* 
 }
 
 
-static void RGB2HSL(float r, float g, float b, float* outH, float* outS, float* outL) {
+static void MP_RGB2HSL(float r, float g, float b, float* outH, float* outS, float* outL) {
     float h,s, l, v, m, vm, r2, g2, b2;
     
     h = 0;
@@ -179,6 +179,22 @@ static void RGB2HSL(float r, float g, float b, float* outH, float* outS, float* 
         *outL = l;
 }
 
+static void MP_RGB2CMYK(float r, float g, float b, float *c, float *m, float *y, float *k) {
+    if (r == 0 && g == 0 && b == 0) { // Pure black
+        *c = 0; *m = 0; *y = 0; *k = 1;
+        return;
+    }
+    
+    *c = 1-r;
+    *m = 1-g;
+    *y = 1-b;
+    float min = MP_NUM_MIN(MP_NUM_MIN(*c,*m),*y);
+    *c = (*c-min)/(1-min);
+    *m = (*m-min)/(1-min);
+    *y = (*y-min)/(1-min);
+    *k = min;
+}
+
 @implementation UIColor (MPColorTools)
 
 - (void) getHue:(CGFloat *)hue saturation:(CGFloat *)saturation lightness:(CGFloat *)lightness alpha:(CGFloat *)alpha {
@@ -186,15 +202,30 @@ static void RGB2HSL(float r, float g, float b, float* outH, float* outS, float* 
     float g = 0;
     float b = 0;
     [self getRed:&r green:&g blue:&b alpha:alpha];
-    RGB2HSL(r, g, b, hue, saturation, lightness);
+    MP_RGB2HSL(r, g, b, hue, saturation, lightness);
 }
 
 + (UIColor *) colorWithHue:(CGFloat)hue saturation:(CGFloat)saturation lightness:(CGFloat)light alpha:(CGFloat)alpha {
     float r = 0;
     float g = 0;
     float b = 0;
-    HSL2RGB(hue, saturation, light, &r, &g, &b);
+    MP_HSL2RGB(hue, saturation, light, &r, &g, &b);
     return [UIColor colorWithRed:r green:g blue:b alpha:alpha];
+}
+
+- (void) getCyan:(CGFloat *)cyan magenta:(CGFloat *)magenta yellow:(CGFloat *)yellow keyBlack:(CGFloat *)keyBlack {
+    float r = 0;
+    float g = 0;
+    float b = 0;
+    [self getRed:&r green:&g blue:&b alpha:nil];
+    MP_RGB2CMYK(r,g,b,cyan,magenta,yellow,keyBlack);
+}
+
++ (UIColor *) colorWithCyan:(CGFloat)cyan magenta:(CGFloat)magenta yellow:(CGFloat)yellow keyBlack:(CGFloat)keyBlack {
+    int r = MP_1_TO_255_SCALE((1-MP_RANGE_0_1(cyan))*(1-MP_RANGE_0_1(keyBlack)));
+    int g = MP_1_TO_255_SCALE((1-MP_RANGE_0_1(magenta))*(1-MP_RANGE_0_1(keyBlack)));
+    int b = MP_1_TO_255_SCALE((1-MP_RANGE_0_1(yellow))*(1-MP_RANGE_0_1(keyBlack)));
+    return MP_RGB(r,g,b);
 }
 
 - (UIColor *) colorByAddingLightness:(CGFloat)quantity {

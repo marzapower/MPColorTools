@@ -82,6 +82,16 @@ or shortly:
 UIColor *hslColor = MP_HSL(0.1, 0.4, 0.6);
 ```
 
+### CMYK support
+
+The iOS SDK also lacks for the CMYK color space. This tool will make it possibile to create colors in the CMYK color space
+and also to get CMYK values from existing colors:
+
+```objc
+UIColor *cmykColor = [UIColor colorWithCyan:0.3 magenta:0.9 yellow:1.0 keyBlack:0.1];
+UIColor *cmykShortColor = MP_CMYK(0.3,0.9,1.0,0.1);
+```
+
 ### Lighten and darken colors
 
 You can lighten and darken colors directly using `UIColor`. These two functions will increase or decrease 
