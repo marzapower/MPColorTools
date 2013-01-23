@@ -55,8 +55,6 @@ UIColor *MP_HEX_RGB(NSString *hexString) {
     
     alpha /= 255.0;
     
-    NSLog(@"Obtained: (%d,%d,%d,%.3f)", red, green, blue, alpha);
-    
     return MP_RGBA(red, green, blue, alpha);
 }
 
