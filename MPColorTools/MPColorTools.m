@@ -7,6 +7,59 @@
 
 #include "MPColorTools.h"
 
+UIColor *MP_HEX_RGB(NSString *hexString) {
+    assert(!(nil == hexString || [@"" isEqualToString:hexString]));
+    assert(hexString.length == 3 || hexString.length == 4 || hexString.length == 6 || hexString.length == 8);
+    
+    NSScanner *scanner = nil;//[NSScanner scannerWithString:hexString];
+    NSRange range = {0, 1};
+    if (hexString.length > 4) {
+        range.length = 2;
+    }
+    
+    [scanner setScanLocation:0];
+    
+    float alpha = range.length == 1 ? 0xF : 0xFF;
+    unsigned red = 0;
+    unsigned green = 0;
+    unsigned blue = 0;
+    
+    // Red
+    scanner = [NSScanner scannerWithString:[hexString substringWithRange:range]];
+    [scanner scanHexInt:&red];
+    
+    // Green
+    range.location += range.length;
+    scanner = [NSScanner scannerWithString:[hexString substringWithRange:range]];
+    [scanner scanHexInt:&green];
+    
+    // Red
+    range.location += range.length;
+    scanner = [NSScanner scannerWithString:[hexString substringWithRange:range]];
+    [scanner scanHexInt:&blue];
+    
+    if (hexString.length == 4 || hexString.length == 8) {
+        unsigned temp = 0;
+        range.location += range.length;
+        scanner = [NSScanner scannerWithString:[hexString substringWithRange:range]];
+        [scanner scanHexInt:&temp];
+        alpha = temp;
+    }
+    
+    if (hexString.length <= 4) {
+        red |= red << 4;
+        green |= green << 4;
+        blue |= blue << 4;
+        alpha = (int)alpha | ((int)alpha << 4);
+    }
+    
+    alpha /= 255.0;
+    
+    NSLog(@"Obtained: (%d,%d,%d,%.3f)", red, green, blue, alpha);
+    
+    return MP_RGBA(red, green, blue, alpha);
+}
+
 static void HSL2RGB(float h, float s, float l, float* outR, float* outG, float* outB) {
 	float temp1, temp2, temp[3];
 	int i;

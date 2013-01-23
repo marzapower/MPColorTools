@@ -12,10 +12,10 @@
 
 #define MP_NUM_MIN(a,b)             (a<b?a:b)
 #define MP_NUM_MAX(a,b)             (a>b?a:b)
-#define MP_RANGE_0_1(a)             (MP_NUM_MIN(1,MP_NUM_MAX(0,a)))
+#define MP_RANGE_0_1(a)             (MP_NUM_MIN(1.0,MP_NUM_MAX(0.0,a)))
 #define MP_RANGE_0_255(a)           (MP_NUM_MIN(255,MP_NUM_MAX(0,a)))
-#define MP_255_SCALE(a)             (MP_RANGE_0_1(a)*255)
-#define MP_1_SCALE(a)               (MP_RANGE_0_255(a)/255)
+#define MP_255_SCALE(a)             (MP_RANGE_0_255(a)/255.0)
+#define MP_1_SCALE(a)               ((int)(MP_RANGE_0_1(a)*255))
 
 #define MP_RGB(r,g,b)               ([UIColor colorWithRed:MP_255_SCALE(r) green:MP_255_SCALE(g) blue:MP_255_SCALE(b) alpha:1])
 #define MP_RGBA(r,g,b,a)            ([UIColor colorWithRed:MP_255_SCALE(r) green:MP_255_SCALE(g) blue:MP_255_SCALE(b) alpha:MP_RANGE_0_1(a)])
@@ -28,6 +28,7 @@
 #define MP_GRAY(g)                  ([UIColor colorWithWhite:MP_255_SCALE(g) alpha:1])
 #define MP_GRAYA(g,a)               ([UIColor colorWithWhite:MP_255_SCALE(g) alpha:MP_RANGE_0_1(a)])
 
+extern UIColor *MP_HEX_RGB(NSString *hexString);
 
 @interface UIColor (MPColorTools)
 
