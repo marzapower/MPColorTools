@@ -128,10 +128,6 @@ static void RGB2HSL(float r, float g, float b, float* outH, float* outS, float* 
         *outL = l;
 }
 
-#define MP_NUM_MIN(a,b) (a<b?a:b)
-#define MP_NUM_MAX(a,b) (a>b?a:b)
-#define MP_RANGE_01(a)  (MP_NUM_MIN(1,MP_NUM_MAX(0,a)))
-
 @implementation UIColor (MPColorTools)
 
 - (void) getHue:(CGFloat *)hue saturation:(CGFloat *)saturation lightness:(CGFloat *)lightness alpha:(CGFloat *)alpha {
@@ -157,7 +153,7 @@ static void RGB2HSL(float r, float g, float b, float* outH, float* outS, float* 
     CGFloat alp = 0;
     
     [self getHue:&hue saturation:&sat lightness:&lum alpha:&alp];
-    lum = MP_RANGE_01(lum + quantity);
+    lum = MP_RANGE_0_1(lum + quantity);
     
     return [UIColor colorWithHue:hue saturation:sat lightness:lum alpha:alp];
 }
@@ -169,7 +165,7 @@ static void RGB2HSL(float r, float g, float b, float* outH, float* outS, float* 
     CGFloat alp = 0;
     
     [self getHue:&hue saturation:&sat lightness:&lum alpha:&alp];
-    lum = MP_RANGE_01(lum * (1+percent));
+    lum = MP_RANGE_0_1(lum * (1+percent));
     
     return [UIColor colorWithHue:hue saturation:sat lightness:lum alpha:alp];
 }
@@ -181,7 +177,7 @@ static void RGB2HSL(float r, float g, float b, float* outH, float* outS, float* 
     CGFloat alp = 0;
     
     [self getHue:&hue saturation:&sat lightness:&lum alpha:&alp];
-    lum = MP_RANGE_01(lum * (1-percent));
+    lum = MP_RANGE_0_1(lum * (1-percent));
     
     return [UIColor colorWithHue:hue saturation:sat lightness:lum alpha:alp];
 }
