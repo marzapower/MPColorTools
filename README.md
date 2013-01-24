@@ -68,6 +68,14 @@ UIColor *myHexColor = MP_HEX_RGB(@"FCE");   // Will be the equivalent of using @
 UIColor *myHexFullColor = MP_HEX_RGB(@"AAB678CC");
 ```
 
+If you are using pure integer values for handling colors, you can use this other approach:
+
+```objc
+UIColor *myHexIntColor = [UIColor colorWithRGB:0xff443c];
+UIColor *myHexIntShortColor = MP_HEX_INT(0xff443c);
+UIColor *myHexIntShortTransparentColor = MP_HEX_INTA(0xff443c, 0.2);
+```
+
 ### Hue/Saturation/Lightness (HSL) support
 
 Since the lack of HSL values support in the iOS SDK, a couple of handy functions have been added:

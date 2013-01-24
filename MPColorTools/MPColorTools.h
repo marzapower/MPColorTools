@@ -30,6 +30,8 @@
 #define MP_GRAYA(g,a)               ([UIColor colorWithWhite:MP_255_TO_1_SCALE(g) alpha:MP_RANGE_0_1(a)])
 
 extern UIColor *MP_HEX_RGB(NSString *hexString);
+#define MP_HEX_RGB_INT(rgb)         ([UIColor colorWithRGB:(rgb)])
+#define MP_HEX_RGB_INTA(rgb,a)      ([UIColor colorWithRGB:(rgb) alpha:MP_RANGE_0_1(a)])
 
 @interface UIColor (MPColorTools)
 
@@ -57,6 +59,10 @@ extern UIColor *MP_HEX_RGB(NSString *hexString);
 //===================//
 // Utility functions //
 //===================//
+
+// Generates a color from a hex rgb value
++ (UIColor *) colorWithRGB:(int32_t)rgbValue;
++ (UIColor *) colorWithRGB:(int32_t)rgbValue alpha:(CGFloat)alpha;
 
 // Lightens a color by a percentage
 - (UIColor *) colorLightenedBy:(CGFloat)percent;

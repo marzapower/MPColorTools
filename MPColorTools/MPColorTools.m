@@ -228,6 +228,20 @@ static void MP_RGB2CMYK(float r, float g, float b, float *c, float *m, float *y,
     return MP_RGB(r,g,b);
 }
 
++ (UIColor *) colorWithRGB:(int32_t)rgbValue {
+    return [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 
+                           green:((float)((rgbValue & 0xFF00) >> 8))/255.0
+                            blue:((float)(rgbValue & 0xFF))/255.0
+                           alpha:1.0];
+}
+
++ (UIColor *) colorWithRGB:(int32_t)rgbValue alpha:(CGFloat)alpha {
+    return [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 
+                           green:((float)((rgbValue & 0xFF00) >> 8))/255.0
+                            blue:((float)(rgbValue & 0xFF))/255.0
+                           alpha:alpha];
+}
+
 - (UIColor *) colorByAddingLightness:(CGFloat)quantity {
     CGFloat hue = 0;
     CGFloat sat = 0;
