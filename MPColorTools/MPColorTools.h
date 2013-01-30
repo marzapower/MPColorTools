@@ -70,10 +70,6 @@ extern UIColor *MP_HEX_RGB(NSString *hexString);
 - (UIColor *) colorByAddingLightness:(CGFloat)quantity;
 // Darkens a color by a percentage
 - (UIColor *) colorDarkenedBy:(CGFloat)percent;
-// Darkens a color by a percentage
-- (UIColor *) colorWithLightness:(CGFloat)lightness;
-// Darkens a color by a percentage
-- (UIColor *) colorWithLightness:(CGFloat)lightness alpha:(CGFloat)alpha;
 
 //=====================//
 // Getters and setters //
@@ -83,10 +79,19 @@ extern UIColor *MP_HEX_RGB(NSString *hexString);
 - (CGFloat)green;
 - (CGFloat)blue;
 - (CGFloat)alpha;
+- (CGFloat)hue;
+- (CGFloat)saturation;
+- (CGFloat)brightness;
+- (CGFloat)lightness;
 
 - (UIColor *)colorWithRed:(CGFloat)red;
 - (UIColor *)colorWithGreen:(CGFloat)green;
 - (UIColor *)colorWithBlue:(CGFloat)blue;
+- (UIColor *)colorWithHue:(CGFloat)hue;
+- (UIColor *)colorWithSaturation:(CGFloat)saturation;
+- (UIColor *)colorWithBrightness:(CGFloat)brightness;
+- (UIColor *)colorWithLightness:(CGFloat)lightness;
+- (UIColor *)colorWithLightness:(CGFloat)lightness alpha:(CGFloat)alpha;
 
 @end
 
