@@ -125,6 +125,29 @@ UIColor *lighterColor = [myColor colorWithLighness:0.7];
 UIColor *lighterTransparentColor = [myColor colorWithLighness:0.7 alpha:0.2];
 ```
 
+### Getters and "setters"
+
+It is fairly difficult to gather a single color space value for a `UIColor` instance. Now you can easily access any value you want
+with simple getters:
+
+```objc
+UIColor *myColor = MP_RGB(125,125,90);
+CGFloat red = myColor.red;
+CGFloat light = myColor.lightness;
+...
+```
+
+`UIColor` are immutable objects, so it's not possible to change color space values on-the-fly. This tool just creates a set of quick
+instance methods to duplicate color and change a single color space value on them. It's just as simple as using a setter, with the
+only difference that you will create a separate object with the new values:
+
+```objc
+UIColor *myColor = MP_GRAY(64);
+UIColor *darkRedColor = [myColor colorWithRed:1];
+```
+
+Notice that these "setter" methods will accept values in the `[0,1]` range like all the other `UIColor` methods do.
+
 ## Copyright
 
 Copyright [2013] Daniele Di Bernardo
