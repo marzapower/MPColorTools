@@ -333,9 +333,9 @@ static void MP_RGB2CMYK(float r, float g, float b, float *c, float *m, float *y,
   return [UIColor colorWithHue:hue saturation:sat brightness:bright alpha:alpha];
 }
 - (UIColor *)colorWithSaturation:(CGFloat)saturation {
-  CGFloat hue, sat, bright, alpha = 0;
-  [self getHue:&hue saturation:&sat brightness:&bright alpha:&alpha];
-  return [UIColor colorWithHue:hue saturation:saturation brightness:bright alpha:alpha];
+  CGFloat hue, sat, light, alpha = 0;
+  [self getHue:&hue saturation:&sat lightness:&light alpha:&alpha];
+  return [UIColor colorWithHue:hue saturation:saturation lightness:light alpha:alpha];
 }
 - (UIColor *)colorWithBrightness:(CGFloat)brightness {
   CGFloat hue, sat, bright, alpha = 0;
