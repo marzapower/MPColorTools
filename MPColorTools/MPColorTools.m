@@ -278,6 +278,24 @@ static void MP_RGB2CMYK(float r, float g, float b, float *c, float *m, float *y,
   return [UIColor colorWithHue:hue saturation:sat lightness:lum alpha:alp];
 }
 
+- (NSUInteger)hexValue {
+  float red, green, blue, alpha;
+  if ([self getRed:&red green:&green blue:&blue alpha:&alpha]) {
+    NSUInteger redInt =  (NSUInteger)MP_1_TO_255_SCALE(red);
+    NSUInteger greenInt = (NSUInteger)MP_1_TO_255_SCALE(green);
+    NSUInteger blueInt = (NSUInteger)MP_1_TO_255_SCALE(blue);
+    NSUInteger alphaInt = (NSUInteger)MP_1_TO_255_SCALE(alpha);
+    NSUInteger result = (redInt << 16) | (greenInt << 8) | blueInt;
+
+    if (alphaInt != 255) {
+      result = (result << 8) | alphaInt;
+    }
+
+    return result;
+  }
+  return 0;
+}
+
 - (CGFloat)red {
   return CGColorGetComponents(self.CGColor)[0];
 }

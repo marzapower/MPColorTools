@@ -75,6 +75,8 @@ extern UIColor *MP_HEX_RGB(NSString *hexString);
 // Getters and setters //
 //=====================//
 
+- (NSUInteger)hexValue;
+
 - (CGFloat)red;
 - (CGFloat)green;
 - (CGFloat)blue;
