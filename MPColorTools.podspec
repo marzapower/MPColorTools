@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
   s.name           = 'MPColorTools'
-  s.version        = '1.5'
-  s.license        = { :type => 'Apache 2.0', :text => '
-                        Copyright [2013] Daniele Di Bernardo
+  s.version        = '1.5.1'
+  s.license        = { :type => 'Apache License, Version 2.0', :text => '
+                        Copyright [2013-2014] Daniele Di Bernardo
                         
                         Licensed under the Apache License, Version 2.0 (the "License");
                         you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   s.summary        = 'A collection of tool for handling colors on iOS SDK.'
   s.homepage       = 'https://github.com/marzapower/MPColorTools'
   s.authors        = {'Daniele Di Bernardo' => 'daniele.dib@gmail.com'}
-  s.source         = { :git => 'https://github.com/marzapower/MPColorTools.git', :tag => '1.5' }
+  s.source         = { :git => 'https://github.com/marzapower/MPColorTools.git', :tag => '1.5.1' }
   s.source_files   = 'MPColorTools/**/*.{h,m}'
   s.platform       = :ios
 end

@@ -19,7 +19,7 @@ UIColor *MP_HEX_RGB(NSString *hexString) {
   
   [scanner setScanLocation:0];
   
-  float alpha = range.length == 1 ? 0xF : 0xFF;
+  CGFloat alpha = range.length == 1 ? 0xF : 0xFF;
   unsigned red = 0;
   unsigned green = 0;
   unsigned blue = 0;
@@ -58,8 +58,8 @@ UIColor *MP_HEX_RGB(NSString *hexString) {
   return MP_RGBA(red, green, blue, alpha);
 }
 
-static void MP_HSL2RGB(float h, float s, float l, float* outR, float* outG, float* outB) {
-  float temp1, temp2, temp[3];
+static void MP_HSL2RGB(CGFloat h, CGFloat s, CGFloat l, CGFloat* outR, CGFloat* outG, CGFloat* outB) {
+  CGFloat temp1, temp2, temp[3];
   int i;
   
   // Check for saturation. If there isn't any just return the luminance value for each, which results in gray.
@@ -118,8 +118,8 @@ static void MP_HSL2RGB(float h, float s, float l, float* outR, float* outG, floa
 }
 
 
-static void MP_RGB2HSL(float r, float g, float b, float* outH, float* outS, float* outL) {
-  float h,s, l, v, m, vm, r2, g2, b2;
+static void MP_RGB2HSL(CGFloat r, CGFloat g, CGFloat b, CGFloat* outH, CGFloat* outS, CGFloat* outL) {
+  CGFloat h,s, l, v, m, vm, r2, g2, b2;
   
   h = 0;
   s = 0;
@@ -179,7 +179,7 @@ static void MP_RGB2HSL(float r, float g, float b, float* outH, float* outS, floa
     *outL = l;
 }
 
-static void MP_RGB2CMYK(float r, float g, float b, float *c, float *m, float *y, float *k) {
+static void MP_RGB2CMYK(CGFloat r, CGFloat g, CGFloat b, CGFloat *c, CGFloat *m, CGFloat *y, CGFloat *k) {
   if (r == 0 && g == 0 && b == 0) { // Pure black
     *c = 0; *m = 0; *y = 0; *k = 1;
     return;
@@ -188,7 +188,7 @@ static void MP_RGB2CMYK(float r, float g, float b, float *c, float *m, float *y,
   *c = 1-r;
   *m = 1-g;
   *y = 1-b;
-  float min = MP_NUM_MIN(MP_NUM_MIN(*c,*m),*y);
+  CGFloat min = MP_NUM_MIN(MP_NUM_MIN(*c,*m),*y);
   *c = (*c-min)/(1-min);
   *m = (*m-min)/(1-min);
   *y = (*y-min)/(1-min);
@@ -198,25 +198,25 @@ static void MP_RGB2CMYK(float r, float g, float b, float *c, float *m, float *y,
 @implementation UIColor (MPColorTools)
 
 - (void) getHue:(CGFloat *)hue saturation:(CGFloat *)saturation lightness:(CGFloat *)lightness alpha:(CGFloat *)alpha {
-  float r = 0;
-  float g = 0;
-  float b = 0;
+  CGFloat r = 0;
+  CGFloat g = 0;
+  CGFloat b = 0;
   [self getRed:&r green:&g blue:&b alpha:alpha];
   MP_RGB2HSL(r, g, b, hue, saturation, lightness);
 }
 
 + (UIColor *) colorWithHue:(CGFloat)hue saturation:(CGFloat)saturation lightness:(CGFloat)light alpha:(CGFloat)alpha {
-  float r = 0;
-  float g = 0;
-  float b = 0;
+  CGFloat r = 0;
+  CGFloat g = 0;
+  CGFloat b = 0;
   MP_HSL2RGB(hue, saturation, light, &r, &g, &b);
   return [UIColor colorWithRed:r green:g blue:b alpha:alpha];
 }
 
 - (void) getCyan:(CGFloat *)cyan magenta:(CGFloat *)magenta yellow:(CGFloat *)yellow keyBlack:(CGFloat *)keyBlack {
-  float r = 0;
-  float g = 0;
-  float b = 0;
+  CGFloat r = 0;
+  CGFloat g = 0;
+  CGFloat b = 0;
   [self getRed:&r green:&g blue:&b alpha:nil];
   MP_RGB2CMYK(r,g,b,cyan,magenta,yellow,keyBlack);
 }
@@ -229,16 +229,16 @@ static void MP_RGB2CMYK(float r, float g, float b, float *c, float *m, float *y,
 }
 
 + (UIColor *) colorWithRGB:(int32_t)rgbValue {
-  return [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0
-                         green:((float)((rgbValue & 0xFF00) >> 8))/255.0
-                          blue:((float)(rgbValue & 0xFF))/255.0
+  return [UIColor colorWithRed:((CGFloat)((rgbValue & 0xFF0000) >> 16))/255.0
+                         green:((CGFloat)((rgbValue & 0xFF00) >> 8))/255.0
+                          blue:((CGFloat)(rgbValue & 0xFF))/255.0
                          alpha:1.0];
 }
 
 + (UIColor *) colorWithRGB:(int32_t)rgbValue alpha:(CGFloat)alpha {
-  return [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0
-                         green:((float)((rgbValue & 0xFF00) >> 8))/255.0
-                          blue:((float)(rgbValue & 0xFF))/255.0
+  return [UIColor colorWithRed:((CGFloat)((rgbValue & 0xFF0000) >> 16))/255.0
+                         green:((CGFloat)((rgbValue & 0xFF00) >> 8))/255.0
+                          blue:((CGFloat)(rgbValue & 0xFF))/255.0
                          alpha:alpha];
 }
 
@@ -279,7 +279,7 @@ static void MP_RGB2CMYK(float r, float g, float b, float *c, float *m, float *y,
 }
 
 - (NSUInteger)hexValue {
-  float red, green, blue, alpha;
+  CGFloat red, green, blue, alpha;
   if ([self getRed:&red green:&green blue:&blue alpha:&alpha]) {
     NSUInteger redInt =  (NSUInteger)MP_1_TO_255_SCALE(red);
     NSUInteger greenInt = (NSUInteger)MP_1_TO_255_SCALE(green);
