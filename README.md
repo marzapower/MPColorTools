@@ -1,6 +1,10 @@
 MPColorTools
 ============
 
+[![Version](http://cocoapod-badges.herokuapp.com/v/MPColorTools/badge.png)](http://cocoadocs.org/docsets/MPColorTools)
+[![Platform](http://cocoapod-badges.herokuapp.com/p/MPColorTools/badge.png)](http://cocoadocs.org/docsets/MPColorTools)
+
+
 A collection of tool for handling colors on iOS SDK.
 
 This tool will add a couple of handy macros for creating colors on the fly, and will also add the capability of working with HSL values instead of just RGB and HSV/HSB.
