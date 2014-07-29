@@ -71,6 +71,25 @@ extern UIColor *MP_HEX_RGB(NSString *hexString);
 // Darkens a color by a percentage
 - (UIColor *) colorDarkenedBy:(CGFloat)percent;
 
+// Move the color on the color wheel by a given angle
+// The angle should be in the [0, 360] range
+- (UIColor *) colorByAddingAngle:(CGFloat)angle;
+
+//=================//
+// Color relations //
+//=================//
+
+// Complementary
+- (UIColor *) complementaryColor;
+// Triadic
+- (NSArray *) triadicColors;
+// Square
+- (NSArray *) squareColors;
+// Analogous colors
+- (NSArray *) analogousColors:(CGFloat)angleOffset;
+// Split-complementary
+- (NSArray *) splitComplementaryColors;
+
 //=====================//
 // Getters and setters //
 //=====================//

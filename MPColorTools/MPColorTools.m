@@ -278,6 +278,53 @@ static void MP_RGB2CMYK(CGFloat r, CGFloat g, CGFloat b, CGFloat *c, CGFloat *m,
   return [UIColor colorWithHue:hue saturation:sat lightness:lum alpha:alp];
 }
 
+- (UIColor *) colorByAddingAngle:(CGFloat)angle {
+  CGFloat hue = 0;
+  CGFloat sat = 0;
+  CGFloat bri = 0;
+  CGFloat alp = 0;
+  [self getHue:&hue saturation:&sat brightness:&bri alpha:&alp];
+
+  CGFloat new_hue = fmod((hue*360 + angle)/360.0, 1.0);
+  if (new_hue < 0) new_hue += 1;
+  return MP_HSVA(new_hue, sat, bri, alp);
+}
+
+- (UIColor *) complementaryColor {
+  return [self colorByAddingAngle:180];
+}
+
+- (NSArray *) triadicColors {
+  return @[
+    self,
+    [self colorByAddingAngle:120],
+    [self colorByAddingAngle:240]];
+}
+
+- (NSArray *) squareColors {
+  return @[
+    self,
+    [self colorByAddingAngle:90],
+    [self colorByAddingAngle:180],
+    [self colorByAddingAngle:270]];
+}
+
+- (NSArray *) analogousColors:(CGFloat)angleOffset {
+  return @[
+    [self colorByAddingAngle:angleOffset*2],
+    [self colorByAddingAngle:angleOffset],
+    self,
+    [self colorByAddingAngle:-angleOffset],
+    [self colorByAddingAngle:-angleOffset*2]];
+}
+
+- (NSArray *) splitComplementaryColors {
+  return @[
+    [self colorByAddingAngle:150],
+    self,
+    [self colorByAddingAngle:-150]];
+}
+
 - (NSUInteger)hexValue {
   CGFloat red, green, blue, alpha;
   if ([self getRed:&red green:&green blue:&blue alpha:&alpha]) {

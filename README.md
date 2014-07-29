@@ -129,6 +129,58 @@ UIColor *lighterColor = [myColor colorWithLighness:0.7];
 UIColor *lighterTransparentColor = [myColor colorWithLighness:0.7 alpha:0.2];
 ```
 
+### Color schemes
+
+You can compute complementary, triadic, square, analogous and split-complementary colors starting from one reference color.
+
+More generally, you can offset a color on the color wheel by adding an angle expressed as an integer in the `[0,360]` range. This is accomplished via this method:
+
+```objc
+UIColor *offsetColor = [myColor colorByAddingAngle:125];
+```
+
+The following methods all use this one to compute these common color schemes.
+
+#### Complementary color
+
+Returns the complementary color.
+
+```objc
+UIColor *complementary = [myColor complementaryColor];
+```
+
+#### Triadic colors
+
+The `triadicColors` method will return an array of three colors, equally spaces by 120° on the color wheel, the middle one being `myColor`.
+
+```objc
+NSArray *triadic = [myColor triadicColors];
+```
+
+#### Square color
+
+With `squareColors` you will get an array of four equally spaced colors (with a 90° offset between each other), the first being the reference one.
+
+```objc
+NSArray *square = [myColor squareColors];
+```
+
+#### Split-complementary colors
+
+The split-complementary colors are an array of three colors, with the middle one being the reference color, and the other two are the colors with +/- 150° offset from that. If the reference color is a primary color, the split-complementary colors will include the nearest secondary colors near its complementary color.
+
+```objc
+NSArray *splitComplementary = [myColor splitComplementaryColor];
+```
+
+#### Analogous colors
+
+Analogous colors will return an array of five colors (the middle one being the reference color), equally spaced among them by a given angle. Usually you should keep this angle low (eg. 20-30°) to get an array of analogous colors that are close to each other on the color wheel.
+
+```objc
+NSArray *analogous = [myColor analogousColorsWithAngle:30];
+```
+
 ### Getters and "setters"
 
 It is fairly difficult to gather a single color space value for a `UIColor` instance. Now you can easily access any value you want
