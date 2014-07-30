@@ -1,9 +1,12 @@
-MPColorTools
+![MPColorTools logo small](https://raw.githubusercontent.com/marzapower/MPColorTools/master/assets/MPColorTools_small.png) MPColorTools
 ============
 
 [![Version](http://cocoapod-badges.herokuapp.com/v/MPColorTools/badge.png)](http://cocoadocs.org/docsets/MPColorTools)
 [![Platform](http://cocoapod-badges.herokuapp.com/p/MPColorTools/badge.png)](http://cocoadocs.org/docsets/MPColorTools)
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/marzapower/MPColorTools/master/assets/MPColorTools.png" alt="MPColorTools"/>
+</p>
 
 A collection of tool for handling colors on iOS SDK.
 
@@ -143,6 +146,8 @@ The following methods all use this one to compute these common color schemes.
 
 #### Complementary color
 
+![Complementary colors](https://raw.githubusercontent.com/marzapower/MPColorTools/master/assets/opposite.png)
+
 Returns the complementary color.
 
 ```objc
@@ -151,13 +156,17 @@ UIColor *complementary = [myColor complementaryColor];
 
 #### Triadic colors
 
+![Triadic colors](https://raw.githubusercontent.com/marzapower/MPColorTools/master/assets/triadic.png)
+
 The `triadicColors` method will return an array of three colors, equally spaces by 120° on the color wheel, the middle one being `myColor`.
 
 ```objc
 NSArray *triadic = [myColor triadicColors];
 ```
 
-#### Square color
+#### Square colors
+
+![Square colors](https://raw.githubusercontent.com/marzapower/MPColorTools/master/assets/square.png)
 
 With `squareColors` you will get an array of four equally spaced colors (with a 90° offset between each other), the first being the reference one.
 
@@ -167,6 +176,8 @@ NSArray *square = [myColor squareColors];
 
 #### Split-complementary colors
 
+![Split-complementary colors](https://raw.githubusercontent.com/marzapower/MPColorTools/master/assets/split.png)
+
 The split-complementary colors are an array of three colors, with the middle one being the reference color, and the other two are the colors with +/- 150° offset from that. If the reference color is a primary color, the split-complementary colors will include the nearest secondary colors near its complementary color.
 
 ```objc
@@ -174,6 +185,8 @@ NSArray *splitComplementary = [myColor splitComplementaryColors];
 ```
 
 #### Analogous colors
+
+![Analogous colors](https://raw.githubusercontent.com/marzapower/MPColorTools/master/assets/analogous.png)
 
 Analogous colors will return an array of five colors (the middle one being the reference color), equally spaced among them by a given angle. Usually you should keep this angle low (eg. 20-30°) to get an array of analogous colors that are close to each other on the color wheel.
 
