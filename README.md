@@ -170,7 +170,7 @@ NSArray *square = [myColor squareColors];
 The split-complementary colors are an array of three colors, with the middle one being the reference color, and the other two are the colors with +/- 150° offset from that. If the reference color is a primary color, the split-complementary colors will include the nearest secondary colors near its complementary color.
 
 ```objc
-NSArray *splitComplementary = [myColor splitComplementaryColor];
+NSArray *splitComplementary = [myColor splitComplementaryColors];
 ```
 
 #### Analogous colors
@@ -206,7 +206,7 @@ Notice that these "setter" methods will accept values in the `[0,1]` range like 
 
 ## Copyright
 
-Copyright [2013] Daniele Di Bernardo
+Copyright [2013-2014] Daniele Di Bernardo
                         
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
