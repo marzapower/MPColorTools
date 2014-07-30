@@ -136,11 +136,28 @@ UIColor *lighterTransparentColor = [myColor colorWithLighness:0.7 alpha:0.2];
 
 You can compute complementary, triadic, square, analogous and split-complementary colors starting from one reference color.
 
-More generally, you can offset a color on the color wheel by adding an angle expressed as an integer in the `[0,360]` range. This is accomplished via this method:
+More generally, you can offset a color on the color wheel by adding an angle expressed as an integer in the `(-360,360)` range. This is accomplished via this method:
 
 ```objc
 UIColor *offsetColor = [myColor colorByAddingAngle:125];
 ```
+
+The rotation is counter-clockwise if the added angle is positive, clockwise if it is negative.
+
+__Examples:__
+
+__+30°__
+
+![Adding 30 degrees](https://raw.githubusercontent.com/marzapower/MPColorTools/master/assets/30plus.png)
+
+__+60°__
+
+![Adding 60 degrees](https://raw.githubusercontent.com/marzapower/MPColorTools/master/assets/60plus.png)
+
+__-120°__
+
+![Removing 120 degrees](https://raw.githubusercontent.com/marzapower/MPColorTools/master/assets/120minus.png)
+
 
 The following methods all use this one to compute these common color schemes.
 
@@ -167,6 +184,7 @@ NSArray *triadic = [myColor triadicColors];
 #### Square colors
 
 ![Square colors](https://raw.githubusercontent.com/marzapower/MPColorTools/master/assets/square.png)
+
 
 With `squareColors` you will get an array of four equally spaced colors (with a 90° offset between each other), the first being the reference one.
 
