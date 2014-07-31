@@ -135,7 +135,7 @@ extern UIColor *MP_HEX_RGB(NSString *hexString);
  * @param yellow a pointer to the float variable that will contain the yellow value
  * @param keyBlack a pointer to the float variable that will contain the key black value
  */
-- (void) getCyan:(CGFloat *)cyan magenta:(CGFloat *)magenta yellow:(CGFloat *) keyBlack:(CGFloat *);
+- (void) getCyan:(CGFloat *)cyan magenta:(CGFloat *)magenta yellow:(CGFloat *)yellow keyBlack:(CGFloat *)keyBlack;
 
 //===================//
 // Utility functions //
