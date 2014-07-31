@@ -2,7 +2,7 @@
 //  MPColorTools.m
 //
 //  Created by Daniele Di Bernardo on 23/01/13.
-//  Copyright (c) 2013 marzapower. All rights reserved.
+//  Copyright (c) 2013-2014 marzapower. All rights reserved.
 //
 
 #include "MPColorTools.h"
@@ -341,6 +341,10 @@ static void MP_RGB2CMYK(CGFloat r, CGFloat g, CGFloat b, CGFloat *c, CGFloat *m,
     return result;
   }
   return 0;
+}
+
+- (NSString *)hexString {
+  return [NSString stringWithFormat:@"%06lx", (unsigned long)(self.hexValue)];
 }
 
 - (CGFloat)red {

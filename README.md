@@ -83,6 +83,14 @@ UIColor *myHexIntShortColor = MP_HEX_INT(0xff443c);
 UIColor *myHexIntShortTransparentColor = MP_HEX_INTA(0xff443c, 0.2);
 ```
 
+#### Getters
+You can retrieve the hexadecimal representation of the color using these two methods:
+
+```objc
+NSUInteger myHexValue = [myColor hexValue];
+NSString *myHexString = [myColor hexString];
+```
+
 ### Hue/Saturation/Lightness (HSL) support
 
 Since the lack of HSL values support in the iOS SDK, a couple of handy functions have been added:
