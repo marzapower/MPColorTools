@@ -351,10 +351,18 @@ static void MP_RGB2CMYK(CGFloat r, CGFloat g, CGFloat b, CGFloat *c, CGFloat *m,
   return CGColorGetComponents(self.CGColor)[0];
 }
 - (CGFloat)green {
-  return CGColorGetComponents(self.CGColor)[1];
+  if (CGColorGetNumberOfComponents(self.CGColor) == 2) {
+    return CGColorGetComponents(self.CGColor)[0];
+  } else {
+    return CGColorGetComponents(self.CGColor)[1];
+  }
 }
 - (CGFloat)blue {
-  return CGColorGetComponents(self.CGColor)[2];
+  if (CGColorGetNumberOfComponents(self.CGColor) == 2) {
+    return CGColorGetComponents(self.CGColor)[0];
+  } else {
+    return CGColorGetComponents(self.CGColor)[2];
+  }
 }
 - (CGFloat)alpha {
   return CGColorGetAlpha(self.CGColor);
