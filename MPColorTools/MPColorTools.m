@@ -430,4 +430,20 @@ static void MP_RGB2CMYK(CGFloat r, CGFloat g, CGFloat b, CGFloat *c, CGFloat *m,
   return [UIColor colorWithHue:hue saturation:sat lightness:lightness alpha:alpha];
 }
 
+- (UIColor *)colorByAlphaBlendingOverColor:(UIColor *)underlyingColor {
+  CGFloat a[3] = {self.red, self.green, self.blue};
+  CGFloat b[3] = {underlyingColor.red, underlyingColor.green, underlyingColor.blue};
+
+  CGFloat _alphaA = self.alpha;
+  CGFloat _alphaB = underlyingColor.alpha;
+  CGFloat _alpha = 1 - (1 - _alphaA) * (1 - _alphaB);
+  CGFloat c[3];
+
+  for (int i = 0; i < 3; i++) {
+    c[i] = ((_alphaA * a[i]) + (1 - _alphaA) * _alphaB * b[i]) / _alpha;
+  }
+
+  return [UIColor colorWithRed:c[0] green:c[1] blue:c[2] alpha:_alpha];
+}
+
 @end

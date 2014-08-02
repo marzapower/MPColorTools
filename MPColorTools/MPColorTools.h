@@ -385,6 +385,12 @@ extern UIColor *MP_HEX_RGB(NSString *hexString);
  */
 - (UIColor *)colorWithLightness:(CGFloat)lightness alpha:(CGFloat)alpha;
 
+//==================//
+// Color overlaying //
+//==================//
+
+- (UIColor *)colorByAlphaBlendingOverColor:(UIColor *)underlyingColor;
+
 @end
 
 #endif
