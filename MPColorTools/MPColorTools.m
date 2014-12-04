@@ -11,13 +11,11 @@ UIColor *MP_HEX_RGB(NSString *hexString) {
   assert(!(nil == hexString || [@"" isEqualToString:hexString]));
   assert(hexString.length == 3 || hexString.length == 4 || hexString.length == 6 || hexString.length == 8);
   
-  NSScanner *scanner = nil;//[NSScanner scannerWithString:hexString];
+  NSScanner *scanner = nil;
   NSRange range = {0, 1};
   if (hexString.length > 4) {
     range.length = 2;
   }
-  
-  [scanner setScanLocation:0];
   
   CGFloat alpha = range.length == 1 ? 0xF : 0xFF;
   unsigned red = 0;
